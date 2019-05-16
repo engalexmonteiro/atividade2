@@ -1,5 +1,4 @@
 project/smartemp.cpp.o: ../../smartemp.cpp ../../smartemp.h \
- C:/Users/aluno/.arduinocdt/libraries/DHT_sensor_library/1.3.4/dht.h \
  C:/Users/aluno/.arduinocdt/packages/arduino/hardware/avr/1.6.23/cores/arduino/Arduino.h \
  C:/Users/aluno/.arduinocdt/packages/arduino/hardware/avr/1.6.23/cores/arduino/binary.h \
  C:/Users/aluno/.arduinocdt/packages/arduino/hardware/avr/1.6.23/cores/arduino/WCharacter.h \

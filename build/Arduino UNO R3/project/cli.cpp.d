@@ -10,5 +10,4 @@ project/cli.cpp.o: ../../cli.cpp \
  C:/Users/aluno/.arduinocdt/packages/arduino/hardware/avr/1.6.23/cores/arduino/USBAPI.h \
  C:/Users/aluno/.arduinocdt/packages/arduino/hardware/avr/1.6.23/cores/arduino/Arduino.h \
  C:/Users/aluno/.arduinocdt/packages/arduino/hardware/avr/1.6.23/variants/standard/pins_arduino.h \
- ../../cli.h ../../smartemp.h \
- C:/Users/aluno/.arduinocdt/libraries/DHT_sensor_library/1.3.4/dht.h
+ ../../cli.h ../../smartemp.h

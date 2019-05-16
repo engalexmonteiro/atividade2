@@ -9,8 +9,6 @@
 #define SMARTEMP_H_
 
 
-#include <dht.h>
-
 #define DHTPIN  A1     // Pino que esta conectado o sensor
 #define DHTTYPE DHT11  // DHT 11
 
