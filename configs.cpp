@@ -30,7 +30,6 @@ const char GW[] PROGMEM = "gateway";
 const char DNS[] PROGMEM = "dns";
 
 
-
 String readStringMEM(char WORD[]){
 	char buffer[30];
 	strcpy_P(buffer, (char *)WORD);

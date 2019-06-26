@@ -21,9 +21,9 @@ int command_cli(String command){
 			return 0;
 	}
 
-	strcpy_P(buffer, (char *)TEMP);
+	strcpy_P(buffer, (char *)TEMPMAX);
 	if(command.equals(String(buffer) + '\r')){
-			Serial.print(temp_current);
+			Serial.print(temp_max);
 			return 0;
 	}
 
@@ -32,7 +32,7 @@ int command_cli(String command){
 				temp_max = command.substring(command.indexOf('=')+1).toFloat();
 				Serial.print(temp_max);
 				return 0;
-		}
+	}
 
 	strcpy_P(buffer, (char *)UNKN);
 	Serial.print(String(buffer) + command);

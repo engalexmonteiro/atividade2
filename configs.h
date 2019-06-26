@@ -10,15 +10,13 @@
 
 #include <Arduino.h>
 
-#define SD_PIN 4
-
 #define TEMP_MIN 19.00
 #define TEMP_MAX 22.00
 #define HUM_MIN 60.00
 #define HUM_MAX 80.00
-#define PERIODI 5000
+#define PERIODI 1000
 
-#define DHTPIN  A2
+#define DHTPIN  A1
 #define DHTTYPE DHT11
 
 //Parameters

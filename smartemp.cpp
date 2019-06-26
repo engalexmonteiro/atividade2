@@ -16,9 +16,7 @@ float hum_current=-1;
 unsigned int period=PERIODI;
 
 byte ip[]={192,168,1,250};
-byte netmask[]={255,255,255,255};
-byte gw[]={192,168,1,1};
-byte dns[]={192.168,1,1};
+
 
 //SmartTemp objects
 DHT dht(DHTPIN, DHTTYPE);
@@ -31,7 +29,7 @@ void checktemp(){
 	  // testa se retorno é valido, caso contrário algo está errado.
 	  if (isnan(t) || isnan(h))
 	  {
-	    //Serial.println("Failed to read from DHT");
+	    Serial.println("Failed to read from DHT");
 	  }
 	  else{
 
@@ -44,6 +42,7 @@ void checktemp(){
    	    if(temp_current>temp_max)
 				Serial.println("L-T "  + String(t) + " ºC / H " + String(h));
 */
+		 // print_configs();
 
 	  }
 
@@ -56,21 +55,22 @@ void setup(){
 	Serial.flush();
 	Serial.begin(9600);
 
-	pinMode(A1,OUTPUT);
-	pinMode(A4,OUTPUT);
-	digitalWrite(A1,HIGH);
-	digitalWrite(A4,LOW);
 
 	dht.begin();
 
 	pinMode(13,OUTPUT);
+
+	pinMode(A0,OUTPUT);
+	digitalWrite(A0,HIGH);
+	pinMode(A3,OUTPUT);
+	digitalWrite(A3,LOW);
 
 
 }
 
 void loop() {
 
-	checktemp();
+	//checktemp();
 
 	cli_init();
 }
