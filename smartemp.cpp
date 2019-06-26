@@ -1,58 +1,76 @@
-#include "smartemp.h"
-
+#include "configs.h"
 #include <Arduino.h>
 #include <DHT.h>
 #include "cli.h"
-#include "smartemp.h"
 
 
-float temp_min=16;
-float temp_max=25;
-float temp_current=0;
-unsigned int period=1000;
+//Parameters SmartTemp
+float temp_min=TEMP_MIN;
+float temp_max=TEMP_MAX;
+float temp_current=-1;
 
-float hum_min;
-float hum_max;
-float hum_current;
+float hum_min=TEMP_MIN;
+float hum_max=TEMP_MAX;
+float hum_current=-1;
 
+unsigned int period=PERIODI;
+
+byte ip[]={192,168,1,250};
+byte netmask[]={255,255,255,255};
+byte gw[]={192,168,1,1};
+byte dns[]={192.168,1,1};
+
+//SmartTemp objects
 DHT dht(DHTPIN, DHTTYPE);
 
 void checktemp(){
 
-	  float h = 60; //dht.readHumidity();
-	  float t = 20; //dht.readTemperature();
+	  float h = dht.readHumidity();
+	  float t = dht.readTemperature();
 
 	  // testa se retorno é valido, caso contrário algo está errado.
 	  if (isnan(t) || isnan(h))
 	  {
-	    Serial.println("Failed to read from DHT");
+	    //Serial.println("Failed to read from DHT");
 	  }
 	  else{
 
 		temp_current = t;
 		hum_current = h;
 
+/*
 		if(temp_current<temp_min)
-				Serial.println("ajustar");
+				Serial.println("A-T: "  + String(t) + " ºC / H " + String(h));
    	    if(temp_current>temp_max)
-				Serial.println("ligar ar");
+				Serial.println("L-T "  + String(t) + " ºC / H " + String(h));
+*/
 
 	  }
 
 	  delay(period);
 }
 
+
 void setup(){
+
+	Serial.flush();
 	Serial.begin(9600);
+
+	pinMode(A1,OUTPUT);
+	pinMode(A4,OUTPUT);
+	digitalWrite(A1,HIGH);
+	digitalWrite(A4,LOW);
+
 	dht.begin();
 
 	pinMode(13,OUTPUT);
+
 
 }
 
 void loop() {
 
 	checktemp();
-	cli_init();
 
+	cli_init();
 }

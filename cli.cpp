@@ -7,50 +7,37 @@
 
 #include <Arduino.h>
 #include "cli.h"
-#include "smartemp.h"
+#include "configs.h"
+
+
 
 int command_cli(String command){
 
-	Serial.println(command);
+	char buffer[30];
 
-	if(command.equals("LED13\r")){
+	strcpy_P(buffer, (char *)LED13);
+	if(command.equals(String(buffer) + '\r')){
 			digitalWrite(13,!digitalRead(13));
-			Serial.print("LED13=");
-			Serial.print(digitalRead(13));
 			return 0;
 	}
 
-	if(command.equals("TEMP\r")){
+	strcpy_P(buffer, (char *)TEMP);
+	if(command.equals(String(buffer) + '\r')){
 			Serial.print(temp_current);
 			return 0;
 	}
 
-	if(command.equals("TEMPMIN\r")){
-			Serial.print(temp_min);
-			return 0;
-	}
-
-	if(command.startsWith("TEMPMIN=")){
+	strcpy_P(buffer, (char *)TEMPMAX);
+	if(command.startsWith(String(buffer) + "=")){
 				temp_max = command.substring(command.indexOf('=')+1).toFloat();
 				Serial.print(temp_max);
 				return 0;
-	}
+		}
 
+	strcpy_P(buffer, (char *)UNKN);
+	Serial.print(String(buffer) + command);
 
-	if(command.equals("TEMPMAX\r")){
-				Serial.print(temp_max);
-				return 0;
-	}
-
-	if(command.startsWith("TEMPMAX=")){
-				temp_max = command.substring(command.indexOf('=')+1).toFloat();
-				Serial.print(temp_max);
-				return 0;
-	}
-
-	Serial.print("unknow command: " + command);
-
-	return 0;
+	return -1;
 }
 
 
@@ -63,7 +50,10 @@ int cli_init(){
 
 		command_cli(command);
 
-		Serial.print("\r\nsmarTemp> ");
+		char buffer[30];
+		strcpy_P(buffer, (char *)SMARTTEMP);
+		Serial.print(buffer);
+
 	}
 
 	return 0;
