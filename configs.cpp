@@ -28,6 +28,11 @@ const char IP[] PROGMEM = "ip";
 const char NETMASK[] PROGMEM = "netmask";
 const char GW[] PROGMEM = "gateway";
 const char DNS[] PROGMEM = "dns";
+const char IP[] PROGMEM = "ip";
+const char NETMASK[] PROGMEM = "netmask";
+const char GW[] PROGMEM = "gateway";
+const char DNS[] PROGMEM = "dns";
+
 
 
 String readStringMEM(char WORD[]){
