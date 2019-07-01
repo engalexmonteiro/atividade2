@@ -10,7 +10,6 @@
 
 #include <Arduino.h>
 
-int cli_init();
-
+void cli_init();
 
 #endif /* CLI_H_ */

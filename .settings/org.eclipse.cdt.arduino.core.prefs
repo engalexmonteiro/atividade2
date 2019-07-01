@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-libraries=["DHT sensor library","Adafruit Unified Sensor"]
+libraries=[{"package"\:"arduino","platform"\:"avr","library"\:"EEPROM"},"ArduinoThreadRunOnce","DHT sensor library","ArduinoThread","Adafruit Unified Sensor","LiquidCrystal"]

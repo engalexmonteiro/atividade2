@@ -2,9 +2,12 @@
 #include <Arduino.h>
 #include <DHT.h>
 #include "cli.h"
+#include <Thread.h>
+#include <ThreadController.h>
 
 
 //Parameters SmartTemp
+bool  en_log=false;
 float temp_min=TEMP_MIN;
 float temp_max=TEMP_MAX;
 float temp_current=-1;
@@ -16,7 +19,14 @@ float hum_current=-1;
 unsigned int period=PERIODI;
 
 byte ip[]={192,168,1,250};
+byte netmask[]={255,255,255,255};
+byte gw[]={192,168,1,1};
+byte dns[]={192.168,1,1};
 
+//Thread instances
+ThreadController controll = ThreadController();
+Thread *thread_Cli = new Thread();
+Thread *thread_CheckTemp = new Thread();
 
 //SmartTemp objects
 DHT dht(DHTPIN, DHTTYPE);
@@ -42,7 +52,8 @@ void checktemp(){
    	    if(temp_current>temp_max)
 				Serial.println("L-T "  + String(t) + " ºC / H " + String(h));
 */
-		 // print_configs();
+		if(en_log)
+			print_configs();
 
 	  }
 
@@ -66,11 +77,20 @@ void setup(){
 	digitalWrite(A3,LOW);
 
 
+	thread_Cli->onRun(checktemp);
+	thread_Cli->setInterval(0);
+
+	thread_CheckTemp->onRun(cli_init);
+	thread_CheckTemp->setInterval(0);
+
+	controll.add(thread_Cli);
+	controll.add(thread_CheckTemp);
+
 }
 
 void loop() {
 
-	//checktemp();
 
-	cli_init();
+	controll.run();
+
 }

@@ -10,15 +10,21 @@
 #include "configs.h"
 
 
-
 int command_cli(String command){
 
 	char buffer[30];
 
-	strcpy_P(buffer, (char *)LED13);
+	strcpy_P(buffer, (char *)LOG);
 	if(command.equals(String(buffer) + '\r')){
-			digitalWrite(13,!digitalRead(13));
+			Serial.print(en_log);
 			return 0;
+	}
+
+	strcpy_P(buffer, (char *)LOG);
+	if(command.startsWith(String(buffer) + "=")){
+				en_log = command.substring(command.indexOf('=')+1).toInt();
+				Serial.print(en_log);
+				return 0;
 	}
 
 	strcpy_P(buffer, (char *)TEMPMAX);
@@ -34,6 +40,16 @@ int command_cli(String command){
 				return 0;
 	}
 
+	if(command.equals("readEEPROM" + '\r')){
+				Serial.print(temp_max);
+				return 0;
+	}
+
+	if(command.equals("initEEPROM" + '\r')){
+					Serial.print(temp_max);
+					return 0;
+	}
+
 	strcpy_P(buffer, (char *)UNKN);
 	Serial.print(String(buffer) + command);
 
@@ -41,7 +57,7 @@ int command_cli(String command){
 }
 
 
-int cli_init(){
+void cli_init(){
 
 	String command;
 
@@ -56,7 +72,6 @@ int cli_init(){
 
 	}
 
-	return 0;
 }
 
 

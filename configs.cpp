@@ -15,7 +15,7 @@
 
 const char nameDevice[] PROGMEM = "smartTemp";
 const char SMARTTEMP[] PROGMEM = "\r\nsmarTemp> ";
-const char LED13[] PROGMEM = "led13";
+const char LOG[] PROGMEM = "log";
 const char TEMP[] PROGMEM = "temp_current";
 const char TEMPMIN[] PROGMEM = "temp_min";
 const char TEMPMAX[] PROGMEM = "temp_max";
