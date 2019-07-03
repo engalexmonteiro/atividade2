@@ -56,14 +56,10 @@ extern byte dns[];
 
 extern unsigned int period;
 
-int load_configs();
-
+String readStringMEM(char WORD[]);
+String ipByteToString(byte ip[]);
 void print_configs();
 
-String readStringMEM(char WORD[]);
-//Parameters Networking
-String ipByteToString(byte ip[]);
 
-int ipStringToByte(String address, byte ip[]);
 
 #endif /* CONFIGS_H_ */

@@ -196,6 +196,7 @@ int networkMenu(int x) {
 
 void ihm_Start(){
 	lcd.begin(16, 2); // Estabelece caracteres do display
+	pinMode(A0,INPUT);
 	clearPrintTitle();
 	tempc = temp_current;
 	humic = hum_current;

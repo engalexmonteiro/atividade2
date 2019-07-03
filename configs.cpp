@@ -28,11 +28,6 @@ const char IP[] PROGMEM = "ip";
 const char NETMASK[] PROGMEM = "netmask";
 const char GW[] PROGMEM = "gateway";
 const char DNS[] PROGMEM = "dns";
-const char IP[] PROGMEM = "ip";
-const char NETMASK[] PROGMEM = "netmask";
-const char GW[] PROGMEM = "gateway";
-const char DNS[] PROGMEM = "dns";
-
 
 
 String readStringMEM(char WORD[]){
@@ -143,41 +138,6 @@ String readConfigString(String conf,const char* param){
 
 		return "";
 };
-
-
-
-
-/*int generateConfigFile(){
-
-	SD.remove(STARTCONFIG);
-	File myFile = SD.open(STARTCONFIG, FILE_WRITE);
-
-	  // if the file opened okay, write to it:
-	if (myFile) {
-		Serial.print("Writing to ");
-	    Serial.println(STARTCONFIG);
-
-	    myFile.println("temp_min=16");
-	    myFile.println("temp_max=22");
-	    myFile.println("hum_min=60");
-	    myFile.println("hum_max=70");
-	    myFile.println("period=1000");
-	    myFile.println("ip=192.168.1.1");
-	    myFile.println("netmask=255.255.255.0");
-	    myFile.println("gateway=192.168.1.1");
-	    myFile.println("dns=8.8.8.8");
-
-	    // close the file:
-	    myFile.close();
-
-	    Serial.println("done.");
-	 } else {
-	    // if the file didn't open, print an error:
-	    Serial.println("error opening ");
-	 }
-
-	return 0;
-}*/
 
 
 
